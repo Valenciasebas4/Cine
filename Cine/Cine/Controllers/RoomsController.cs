@@ -61,7 +61,7 @@ namespace Cine.Controllers
 
                 // Verificar si ya existe un el Número de la sala
                 bool Exists = await _context.Rooms
-                    .AnyAsync(v => v.NumberRoom == room.NumberRoom);
+                    .AnyAsync(v => v.NumberRoom == room.NumberRoom );
 
                 if (Exists) // Se valida si el resultado de la variable es true o false
                 {
@@ -74,7 +74,7 @@ namespace Cine.Controllers
                     try
                     {
                         TempData["SalaIngresada"] = "Se ingreso correctamente";
-                        //room.NumberRoom = "UNO";
+                       
                         room.CreatedDate = DateTime.Now;
                         _context.Add(room);
                         await _context.SaveChangesAsync();
