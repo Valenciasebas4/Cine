@@ -28,5 +28,7 @@ namespace Cine.DAL.Entities
 
         public Gender Gender { get; set; }
         public Classification Classification { get; set; }
+
+        public List<Hour> Hours { get; set; } // Relacion con Horario
     }
 }
