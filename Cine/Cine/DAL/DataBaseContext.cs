@@ -30,7 +30,6 @@ namespace Cine.DAL
             modelBuilder.Entity<Gender>().HasIndex(g => g.GenderName).IsUnique();
             modelBuilder.Entity<Room>().HasIndex(r => r.NumberRoom).IsUnique();
             modelBuilder.Entity<Seat>().HasIndex(s => s.NumberSeat).IsUnique();
-
             modelBuilder.Entity<Movie>().HasOne(p => p.Classification).WithOne().HasForeignKey<Classification>(c => c.Movies);
         }
 
