@@ -10,77 +10,75 @@ using Cine.DAL.Entities;
 
 namespace Cine.Controllers
 {
-    public class ClassificationsController : Controller
+    public class GendersController : Controller
     {
         private readonly DataBaseContext _context;
 
-        public ClassificationsController(DataBaseContext context)
+        public GendersController(DataBaseContext context)
         {
             _context = context;
         }
 
-        // GET: Classifications
+        // GET: Genders
         public async Task<IActionResult> Index()
         {
-              return _context.Classifications != null ? 
-                          View(await _context.Classifications.ToListAsync()) :
-                          Problem("Entity set 'DataBaseContext.Classifications'  is null.");
+              return View(await _context.Genders.ToListAsync());
         }
 
-        // GET: Classifications/Details/5
+        // GET: Genders/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Classifications == null)
+            if (id == null || _context.Genders == null)
             {
                 return NotFound();
             }
 
-            var classification = await _context.Classifications
+            var gender = await _context.Genders
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (classification == null)
+            if (gender == null)
             {
                 return NotFound();
             }
 
-            return View(classification);
+            return View(gender);
         }
 
-        // GET: Classifications/Create
+        // GET: Genders/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Classifications/Create
+        // POST: Genders/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create( Classification classification)
+        public async Task<IActionResult> Create( Gender gender)
         {
             if (ModelState.IsValid)
             {
 
-                // Verificar si ya existe una Clasificacion con el mismo nombre
-                bool Exists = await _context.Classifications
-                    .AnyAsync(v => v.ClassificationName == classification.ClassificationName);
+                // Verificar si ya existe un Genero con el mismo nombre
+                bool Exists = await _context.Genders
+                    .AnyAsync(v => v.GenderName == gender.GenderName);
 
                 if (Exists) // Se valida si el resultado de la variable es true o false
                 {
                     // Si la variable es true se envia un mensaje 
-                    ModelState.AddModelError(string.Empty, "Ya se ha registrado una clasificación con el mismo nombre");
-                    TempData["ClasificacionIngresada"] = "No Se ingreso correctamente";
+                    ModelState.AddModelError(string.Empty, "Ya se ha registrado el genero con el mismo nombre");
+                    TempData["GeneroIngresada"] = "No Se ingreso correctamente";
                 }
                 else
                 { // Si la variable es false entonces se crea la clasificación
-                    try 
+                    try
                     {
-                        TempData["ClasificacionIngresada"] = "Se ingreso correctamente";
-                        classification.CreatedDate = DateTime.Now;
-                        _context.Add(classification);
+                        TempData["GeneroIngresada"] = "Se ingreso correctamente";
+                        gender.CreatedDate = DateTime.Now;
+                        _context.Add(gender);
                         await _context.SaveChangesAsync();
                         return RedirectToAction(nameof(Index));
-                    } 
+                    }
                     catch (Exception exception)
                     {
                         ModelState.AddModelError(string.Empty, exception.Message);
@@ -88,33 +86,35 @@ namespace Cine.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(classification);
+            return View(gender);
+
+           
         }
 
-        // GET: Classifications/Edit/5
+        // GET: Genders/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Classifications == null)
+            if (id == null || _context.Genders == null)
             {
                 return NotFound();
             }
 
-            var classification = await _context.Classifications.FindAsync(id);
-            if (classification == null)
+            var gender = await _context.Genders.FindAsync(id);
+            if (gender == null)
             {
                 return NotFound();
             }
-            return View(classification);
+            return View(gender);
         }
 
-        // POST: Classifications/Edit/5
+        // POST: Genders/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, Classification classification)
+        public async Task<IActionResult> Edit(int id, Gender gender)
         {
-            if (id != classification.Id)
+            if (id != gender.Id)
             {
                 return NotFound();
             }
@@ -123,14 +123,14 @@ namespace Cine.Controllers
             {
                 try
                 {
-                    TempData["ClasificacionEditada"] = "Se modifico correctamente";
-                    classification.ModifiedDate = DateTime.Now;
-                    _context.Update(classification);
+                    TempData["GeneroEditada"] = "Se modifico correctamente";
+                    gender.ModifiedDate = DateTime.UtcNow;
+                    _context.Update(gender);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ClassificationExists(classification.Id))
+                    if (!GenderExists(gender.Id))
                     {
                         return NotFound();
                     }
@@ -141,49 +141,49 @@ namespace Cine.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(classification);
+            return View(gender);
         }
 
-        // GET: Classifications/Delete/5
+        // GET: Genders/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Classifications == null)
+            if (id == null || _context.Genders == null)
             {
                 return NotFound();
             }
 
-            var classification = await _context.Classifications
+            var gender = await _context.Genders
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (classification == null)
+            if (gender == null)
             {
                 return NotFound();
             }
 
-            return View(classification);
+            return View(gender);
         }
 
-        // POST: Classifications/Delete/5
+        // POST: Genders/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Classifications == null)
+            if (_context.Genders == null)
             {
-                return Problem("Entity set 'DataBaseContext.Classifications'  is null.");
+                return Problem("Entity set 'DataBaseContext.Genders'  is null.");
             }
-            var classification = await _context.Classifications.FindAsync(id);
-            if (classification != null)
+            var gender = await _context.Genders.FindAsync(id);
+            if (gender != null)
             {
-                _context.Classifications.Remove(classification);
+                _context.Genders.Remove(gender);
             }
             
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool ClassificationExists(int id)
+        private bool GenderExists(int id)
         {
-          return (_context.Classifications?.Any(e => e.Id == id)).GetValueOrDefault();
+          return _context.Genders.Any(e => e.Id == id);
         }
     }
 }

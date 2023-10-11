@@ -1,20 +1,20 @@
-﻿@model IEnumerable<Cine.DAL.Entities.Classification>
+﻿@model IEnumerable<Cine.DAL.Entities.Gender>
 
 @{
     ViewData["Title"] = "Index";
 }
 
 
-<h1 class="text-center">Tabla de Clasificaciones</h1>
+<h1 class="text-center">Tabla de Generos</h1>
 
 <p>
-    <a asp-action="Create" class="btn btn-outline-primary">Crear Clasificación</a>
+    <a asp-action="Create" class="btn btn-outline-primary">Crear Genero</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.ClassificationName)
+                @Html.DisplayNameFor(model => model.GenderName)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Description)
@@ -32,7 +32,7 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.ClassificationName)
+                @Html.DisplayFor(modelItem => item.GenderName)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Description)
@@ -43,11 +43,11 @@
             <td>
                 @Html.DisplayFor(modelItem => item.ModifiedDate)
             </td>
-            <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-outline-warning">Editar</a>
-                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-outline-info">Detalles</a>
-                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-outline-danger">Eliminar</a>
-            </td>
+                <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-outline-warning">Editar</a>
+                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-outline-info">Detalles</a>
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-outline-danger">Eliminar</a>
+                </td>
         </tr>
 }
     </tbody>
