@@ -39,7 +39,6 @@ namespace Cine.Controllers
             return View(addMovieViewModel);
         }
 
-        //--------------------------------
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -94,69 +93,6 @@ namespace Cine.Controllers
             addMovieViewModel.Classifications = await _dropDownListHelper.GetDDLClassificationsAsync();
             return View(addMovieViewModel);
         }
-
-
-        //-----------------------
-
-
-
-
-
-
-
-        /*
-
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(AddMovieViewModel addMovieViewModel)
-        {
-            if (ModelState.IsValid)
-            {
-                // Verificar si ya existe una pelicula con el mismo titulo
-                bool Exists = await _context.Movies
-                    .AnyAsync(v => v.Title == addMovieViewModel.Title);
-
-                if (Exists)
-                {
-                    ModelState.AddModelError(string.Empty, "Ya se ha registrado una pelicula con el mismo titulo");
-                    TempData["PeliculaNoIngresada"] = "No Se ingreso correctamente";
-                    return View(addMovieViewModel);
-                }
-                else
-                {
-                    try 
-                    {
-                        Movie movie = new()
-                        {
-                            CreatedDate = DateTime.Now,
-                            GenderId = addMovieViewModel.GenderId,
-                            //Gender = await _context.Genders.FindAsync(addMovieViewModel.GenderId),
-                            //Classification = await _context.Classifications.FindAsync(addMovieViewModel.ClassificationId),
-                            ClassificationId = addMovieViewModel.ClassificationId,
-                            Title = addMovieViewModel.Title,
-                            Description = addMovieViewModel.Description,
-                            Director = addMovieViewModel.Director,
-                            Duration = addMovieViewModel.Duration,
-                        };
-
-                        TempData["PeliculaIngresada"] = "Se ingreso correctamente";
-                        _context.Add(movie);
-                        await _context.SaveChangesAsync();
-                        return RedirectToAction(nameof(Index));
-                    }
-                    catch (Exception exception)
-                    {
-                        ModelState.AddModelError(string.Empty, exception.Message);
-                    }
-                }
-            }
-
-            addMovieViewModel.Genders = await _dropDownListHelper.GetDDLGendersAsync();
-            addMovieViewModel.Classifications = await _dropDownListHelper.GetDDLClassificationsAsync();
-            return View(addMovieViewModel);
-        }
-        */
 
 
         // GET: Movies/Edit/5
@@ -224,7 +160,7 @@ namespace Cine.Controllers
         }
 
 
-        // DropDownListLocation es la lista desplegable de los paises, estados y ciudades
+        // DropDownListLocation es la lista desplegable de los generos y clasificaciones
         private async Task FillDropDownListLocation(EditMovieViewModel addMovieViewModel)
         {
             addMovieViewModel.Genders = await _dropDownListHelper.GetDDLGendersAsync();
@@ -251,6 +187,33 @@ namespace Cine.Controllers
             if (movie == null) return NotFound();
 
             return View(movie);
+        }
+
+        public async Task<IActionResult> Delete(int? Id)
+        {
+            
+            if (Id == null) return NotFound();
+
+            Movie movie = await _context.Movies
+                .FirstOrDefaultAsync(p => p.Id == Id);
+            if (movie == null) return NotFound();
+
+            return View(movie);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Delete(Movie movieModel)
+        {
+            Movie movie = await _context.Movies
+                .FirstOrDefaultAsync(p => p.Id == movieModel.Id);
+
+            _context.Movies.Remove(movie);
+            await _context.SaveChangesAsync();
+
+            
+
+            return RedirectToAction(nameof(Index));
         }
     }
 }
