@@ -14,6 +14,13 @@ namespace Cine.DAL.Entities
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
         public int Capacity { get; set; }
 
-        public List<Seat> Seats { get;} //Relación con Seat(asiento)
+        [Display(Name = "Sillas")]
+        public ICollection<Seat> Seats { get; set; } // Colección de silla para la sala
+
+
+        //public List<Seat> Seats { get;} //Relación con Seat(asiento)
+
+        [Display(Name = "Número de Sillas")]
+        public int SeatNumber => Seats == null ? 0 : Seats.Count; //IF TERNARIO: SI Seats ES (==) null, ENTONCES (?) mandar un 0, SINO (:) mandar el COUNT
     }
 }

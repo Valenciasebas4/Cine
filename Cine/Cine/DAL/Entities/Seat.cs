@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace Cine.DAL.Entities
 {
@@ -9,10 +10,8 @@ namespace Cine.DAL.Entities
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
         public string NumberSeat { get; set; }
 
-        [ForeignKey("Sala")]
-        public int SalaID { get; set; }
-
-        [Display(Name = "Servicio.")]
+        [Display(Name = "Sala.")]
+        [JsonIgnore]
         public virtual Room Room { get; set; } //Relacion con Room(sala)
     }
 }

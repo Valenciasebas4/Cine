@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Cine.DAL;
 using Cine.DAL.Entities;
+using Cine.Models;
 
 namespace Cine.Controllers
 {
@@ -22,7 +23,9 @@ namespace Cine.Controllers
         // GET: Rooms
         public async Task<IActionResult> Index()
         {
-              return View(await _context.Rooms.ToListAsync());
+              return View(await _context.Rooms
+                  .Include(s => s.Seats)
+                  .ToListAsync());
         }
 
         // GET: Rooms/Details/5
@@ -34,6 +37,7 @@ namespace Cine.Controllers
             }
 
             var room = await _context.Rooms
+                .Include(s => s.Seats)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (room == null)
             {
@@ -183,6 +187,78 @@ namespace Cine.Controllers
         private bool RoomExists(int id)
         {
           return _context.Rooms.Any(e => e.Id == id);
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        [HttpGet]
+        public async Task<IActionResult> AddSeat(int? roomId)
+        {
+
+            if (roomId == null) return NotFound();
+
+            Room room = await _context.Rooms.FirstOrDefaultAsync(c => c.Id == roomId);
+
+            if (room == null) return NotFound();
+
+            SeatViewModel seatViewModel = new()
+            {
+                RoomId = room.Id,
+            };
+
+            return View(seatViewModel);
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AddSeat(SeatViewModel seatViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    Seat seat = new()
+                    {
+
+                        Room = await _context.Rooms.FirstOrDefaultAsync(c => c.Id == seatViewModel.RoomId),
+                        NumberSeat = seatViewModel.NumberSeat,
+                        CreatedDate = DateTime.Now,
+                        ModifiedDate = null,
+                    };
+
+                    _context.Add(seat);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index), new { Id = seatViewModel.RoomId });
+                    //return RedirectToAction(nameof(Details), new { Id = seatViewModel.RoomId });
+                }
+                catch (DbUpdateException dbUpdateException)
+                {
+                    if (dbUpdateException.InnerException.Message.Contains("duplicate"))
+                        ModelState.AddModelError(string.Empty, "Ya existe una silla con el mismo nombre en esta sala.");
+                    else
+                        ModelState.AddModelError(string.Empty, dbUpdateException.InnerException.Message);
+                }
+                catch (Exception exception)
+                {
+                    ModelState.AddModelError(string.Empty, exception.Message);
+                }
+            }
+            return View(seatViewModel);
         }
     }
 }
