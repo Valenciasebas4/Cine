@@ -2,21 +2,43 @@ using Cine.DAL;
 using Cine.Helpers;
 using Cine.Services;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+//builder.Services.AddControllersWithViews();
+
+// Add services to the container.
+builder.Services
+    .AddControllersWithViews()
+    .AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 
 builder.Services.AddDbContext<DataBaseContext>(
     o => o.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
 );
+
+//Builder para llamar la clase SeederDb.cs|
+builder.Services.AddTransient<SeederDb>();
 
 //Builder para llamar la interfaz IDropDownListHelper.cs
 builder.Services.AddScoped<IDropDownListHelper, DropDownListHelper>();
 
 var app = builder.Build();
 
+app.UseRequestLocalization();
+
+SeederData();
+void SeederData()
+{
+    IServiceScopeFactory? scopedFactory = app.Services.GetService<IServiceScopeFactory>();
+
+    using (IServiceScope? scope = scopedFactory.CreateScope())
+    {
+        SeederDb? service = scope.ServiceProvider.GetService<SeederDb>();
+        service.SeedAsync().Wait();
+    }
+}
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
