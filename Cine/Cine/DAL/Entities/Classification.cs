@@ -11,7 +11,7 @@ namespace Cine.DAL.Entities
         public string ClassificationName { get; set; }
 
         [Display(Name = "Descripción")]
-        [MaxLength(200)]
+        [MaxLength(300)]
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
         public string Description { get; set; }
 

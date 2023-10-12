@@ -1,4 +1,6 @@
 using Cine.DAL;
+using Cine.Helpers;
+using Cine.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +11,9 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<DataBaseContext>(
     o => o.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
 );
+
+//Builder para llamar la interfaz IDropDownListHelper.cs
+builder.Services.AddScoped<IDropDownListHelper, DropDownListHelper>();
 
 var app = builder.Build();
 
