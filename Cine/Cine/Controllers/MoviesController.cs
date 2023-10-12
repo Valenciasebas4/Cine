@@ -150,5 +150,17 @@ namespace Cine.Controllers
         {
             return (_context.Movies?.Any(e => e.Id == id)).GetValueOrDefault();
         }
+
+
+        public async Task<IActionResult> Details(int? Id)
+        {
+            if (Id == null) return NotFound();
+
+            Movie movie = await _context.Movies.FirstOrDefaultAsync(p => p.Id == Id);
+
+            if (movie == null) return NotFound();
+
+            return View(movie);
+        }
     }
 }
