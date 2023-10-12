@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System.ComponentModel.DataAnnotations;
 using System.Xml.Linq;
 
 namespace Cine.DAL.Entities
@@ -7,17 +8,17 @@ namespace Cine.DAL.Entities
     {
 
         [Display(Name = "Titulo")]
-        [MaxLength(50)]
+        [MaxLength(100)]
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
         public string Title { get; set; }
 
         [Display(Name = "Descripción")]
-        [MaxLength(50)]
+        [MaxLength(400)]
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
         public string Description { get; set; }
 
         [Display(Name = "Director")]
-        [MaxLength(50)]
+        [MaxLength(100)]
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
         public string Director { get; set; }
 
@@ -25,6 +26,17 @@ namespace Cine.DAL.Entities
         [MaxLength(250)]
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
         public int Duration { get; set; }
+
+        [Display(Name = "Genero")]
+        [Required(ErrorMessage = "El campo {0} es obligatorio.")]
+        public int GenderId { get; set; }
+        
+
+        [Display(Name = "Clasificacion")]
+        [Required(ErrorMessage = "El campo {0} es obligatorio.")]
+        public int ClassificationId { get; set; }
+        
+
 
         public Gender Gender { get; set; }
         public Classification Classification { get; set; }

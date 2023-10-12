@@ -20,6 +20,7 @@ namespace Cine.DAL
             await PopulateGenderAsync();
             await PopulateClassificationAsync();
             await PopulateRoomsAsync();
+            await PopulateMoviesAsync();
 
             await _context.SaveChangesAsync();
         }
@@ -64,6 +65,17 @@ namespace Cine.DAL
                 _context.Rooms.Add(new Room { NumberRoom = "Cuatro", Capacity = 120, CreatedDate = DateTime.Now });
                 _context.Rooms.Add(new Room { NumberRoom = "Cinco", Capacity = 60, CreatedDate = DateTime.Now });
                 _context.Rooms.Add(new Room { NumberRoom = "Seis", Capacity = 80, CreatedDate = DateTime.Now });
+
+            }
+
+        }
+
+        private async Task PopulateMoviesAsync()
+        {
+            if (!_context.Movies.Any())
+            {
+                _context.Movies.Add(new Movie { Title="El Padrino", Description = "Una película de mafia dirigida por Francis Ford Coppola.", Director= "Francis Ford Coppola", Duration=175, GenderId=1, ClassificationId=2, CreatedDate = DateTime.Now });
+                _context.Movies.Add(new Movie { Title = "Cadena Perpetua", Description = "Una película carcelaria basada en una novela de Stephen King.", Director = "Frank Darabont", Duration = 142, GenderId = 3, ClassificationId = 2, CreatedDate = DateTime.Now });
 
             }
 

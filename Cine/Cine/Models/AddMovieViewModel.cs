@@ -9,17 +9,17 @@ namespace Cine.Models
      
 
         [Display(Name = "Titulo")]
-        [MaxLength(50)]
+        [MaxLength(100)]
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
         public string Title { get; set; }
 
         [Display(Name = "Descripción")]
-        [MaxLength(50)]
+        [MaxLength(400)]
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
         public string Description { get; set; }
 
         [Display(Name = "Director")]
-        [MaxLength(50)]
+        [MaxLength(100)]
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
         public string Director { get; set; }
 
