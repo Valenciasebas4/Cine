@@ -241,7 +241,12 @@ namespace Cine.Controllers
         {
             if (Id == null) return NotFound();
 
-            Movie movie = await _context.Movies.FirstOrDefaultAsync(p => p.Id == Id);
+            // Cargar la película y los datos relacionados (Género y Clasificación)
+            Movie movie = await _context.Movies
+                .Include(m => m.Gender)
+                .Include(m => m.Classification)
+                .FirstOrDefaultAsync(p => p.Id == Id);
+            //Movie movie = await _context.Movies.FirstOrDefaultAsync(p => p.Id == Id);
 
             if (movie == null) return NotFound();
 
