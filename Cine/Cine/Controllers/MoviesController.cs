@@ -39,6 +39,74 @@ namespace Cine.Controllers
             return View(addMovieViewModel);
         }
 
+        //--------------------------------
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create(AddMovieViewModel addMovieViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+
+
+                    Movie movie = new()
+                    {
+                        Title = addMovieViewModel.Title,
+                        Description = addMovieViewModel.Description,
+                        Director = addMovieViewModel.Director,
+                        Duration = addMovieViewModel.Duration,
+                        CreatedDate = DateTime.Now,
+                        Gender = await _context.Genders.FindAsync(addMovieViewModel.GenderId),
+                        Classification = await _context.Classifications.FindAsync(addMovieViewModel.ClassificationId),
+
+
+                    };
+
+
+
+
+
+                    _context.Add(movie);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
+                catch (DbUpdateException dbUpdateException)
+                {
+                    if (dbUpdateException.InnerException.Message.Contains("duplicate"))
+                    {
+                        ModelState.AddModelError(string.Empty, "Ya existe un producto con el mismo nombre.");
+                    }
+                    else
+                    {
+                        ModelState.AddModelError(string.Empty, dbUpdateException.InnerException.Message);
+                    }
+                }
+                catch (Exception exception)
+                {
+                    ModelState.AddModelError(string.Empty, exception.Message);
+                }
+            }
+
+
+            addMovieViewModel.Genders = await _dropDownListHelper.GetDDLGendersAsync();
+            addMovieViewModel.Classifications = await _dropDownListHelper.GetDDLClassificationsAsync();
+            return View(addMovieViewModel);
+        }
+
+
+        //-----------------------
+
+
+
+
+
+
+
+        /*
+
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(AddMovieViewModel addMovieViewModel)
@@ -62,8 +130,10 @@ namespace Cine.Controllers
                         Movie movie = new()
                         {
                             CreatedDate = DateTime.Now,
-                            Gender = await _context.Genders.FindAsync(addMovieViewModel.GenderId),
-                            Classification = await _context.Classifications.FindAsync(addMovieViewModel.ClassificationId),
+                            GenderId = addMovieViewModel.GenderId,
+                            //Gender = await _context.Genders.FindAsync(addMovieViewModel.GenderId),
+                            //Classification = await _context.Classifications.FindAsync(addMovieViewModel.ClassificationId),
+                            ClassificationId = addMovieViewModel.ClassificationId,
                             Title = addMovieViewModel.Title,
                             Description = addMovieViewModel.Description,
                             Director = addMovieViewModel.Director,
@@ -86,7 +156,7 @@ namespace Cine.Controllers
             addMovieViewModel.Classifications = await _dropDownListHelper.GetDDLClassificationsAsync();
             return View(addMovieViewModel);
         }
-
+        */
 
 
         // GET: Movies/Edit/5
@@ -100,10 +170,16 @@ namespace Cine.Controllers
 
             EditMovieViewModel editMovietViewModel = new()
             {
+                Id = movie.Id,
                 Title = movie.Title,
                 Description = movie.Description,
                 Director = movie.Director,  
-                Duration = movie.Duration, 
+                Duration = movie.Duration,
+                GenderId= movie.GenderId,
+                ClassificationId= movie.ClassificationId,
+                Genders = await _dropDownListHelper.GetDDLGendersAsync(),
+                Classifications = await _dropDownListHelper.GetDDLClassificationsAsync(),
+                
             };
 
             return View(editMovietViewModel);
@@ -124,6 +200,8 @@ namespace Cine.Controllers
                 movie.Description = editMovietViewModel.Description;
                 movie.Director = editMovietViewModel.Director;
                 movie.Duration = editMovietViewModel.Duration;
+                movie.Gender = await _context.Genders.FindAsync(editMovietViewModel.GenderId);
+                movie.Classification = await _context.Classifications.FindAsync(editMovietViewModel.ClassificationId);
                 movie.ModifiedDate = DateTime.Now;
 
                 _context.Update(movie);
@@ -141,10 +219,17 @@ namespace Cine.Controllers
             {
                 ModelState.AddModelError(string.Empty, exception.Message);
             }
-
+            await FillDropDownListLocation(editMovietViewModel);
             return View(editMovietViewModel);
         }
 
+
+        // DropDownListLocation es la lista desplegable de los paises, estados y ciudades
+        private async Task FillDropDownListLocation(EditMovieViewModel addMovieViewModel)
+        {
+            addMovieViewModel.Genders = await _dropDownListHelper.GetDDLGendersAsync();
+            addMovieViewModel.Classifications = await _dropDownListHelper.GetDDLClassificationsAsync();
+        }
 
         private bool Exists(int id)
         {

@@ -69,7 +69,7 @@ namespace Cine.DAL
             }
 
         }
-
+        
         private async Task PopulateMoviesAsync()
         {
             if (!_context.Movies.Any())
@@ -80,6 +80,6 @@ namespace Cine.DAL
             }
 
         }
-
+        
     }
 }

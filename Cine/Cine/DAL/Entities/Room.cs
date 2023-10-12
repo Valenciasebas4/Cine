@@ -6,6 +6,7 @@ namespace Cine.DAL.Entities
     public class Room : Entity
     {
         [Display(Name = "Numero de Sala")]
+        [MaxLength(10, ErrorMessage = "El campo {0} debe tener máximo {1} caracteres.")]
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
         public string NumberRoom { get; set; }
 
