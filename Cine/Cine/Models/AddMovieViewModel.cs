@@ -1,10 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Cine.DAL.Entities;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System.ComponentModel.DataAnnotations;
 using System.Xml.Linq;
 
 namespace Cine.Models
 {
-    public class AddMovieViewModel
+    public class AddMovieViewModel : Entity
     {
      
 
