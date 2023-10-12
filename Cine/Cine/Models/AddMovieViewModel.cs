@@ -6,8 +6,7 @@ namespace Cine.Models
 {
     public class AddMovieViewModel
     {
-        [Key]
-        public virtual int Id { get; set; }
+     
 
         [Display(Name = "Titulo")]
         [MaxLength(50)]
