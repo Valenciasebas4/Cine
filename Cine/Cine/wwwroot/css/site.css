@@ -16,3 +16,14 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+
+.silla-ocupada {
+    background-color: blue; /* Puedes ajustar el color a tu preferencia */
+    color: white; /* Cambia el color del texto si es necesario para la legibilidad */
+}
+
+.silla-disponible {
+    background-color: lightcyan; /* Puedes ajustar el color a tu preferencia */
+    color: black; /* Cambia el color del texto si es necesario para la legibilidad */
+}

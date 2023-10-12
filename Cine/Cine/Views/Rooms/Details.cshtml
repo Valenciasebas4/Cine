@@ -27,7 +27,7 @@
                         @foreach (var item in Model.Seats)
                         {
                             <div class="col">
-                                <div class="card">
+                                <div class="card @(item.Busy ? "silla-ocupada" : "silla-disponible")">
                                     <div class="card-body text-center">
                                         <h5 class="card-title">@Html.DisplayFor(modelItem => item.NumberSeat)</h5>
                                     </div>

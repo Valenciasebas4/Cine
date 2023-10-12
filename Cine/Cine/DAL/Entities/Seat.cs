@@ -10,6 +10,8 @@ namespace Cine.DAL.Entities
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
         public string NumberSeat { get; set; }
 
+        public bool Busy { get; set; }
+
         [Display(Name = "Sala.")]
         [JsonIgnore]
         public virtual Room Room { get; set; } //Relacion con Room(sala)

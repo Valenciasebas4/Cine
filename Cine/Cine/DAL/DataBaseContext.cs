@@ -29,8 +29,10 @@ namespace Cine.DAL
             modelBuilder.Entity<Classification>().HasIndex(c => c.ClassificationName).IsUnique();
             modelBuilder.Entity<Gender>().HasIndex(g => g.GenderName).IsUnique();
             modelBuilder.Entity<Room>().HasIndex(r => r.NumberRoom).IsUnique();
-            modelBuilder.Entity<Seat>().HasIndex(s => s.NumberSeat).IsUnique();
+            //modelBuilder.Entity<Seat>().HasIndex(s => s.NumberSeat).IsUnique();
             modelBuilder.Entity<Movie>().HasIndex(m => m.Title).IsUnique();
+            modelBuilder.Entity<Seat>().HasIndex("NumberSeat", "RoomId").IsUnique(); // Para estos casos, debo crear un índice Compuesto
+
 
         }
 

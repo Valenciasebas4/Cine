@@ -1,4 +1,5 @@
 ﻿using Cine.DAL.Entities;
+using System.Diagnostics.Metrics;
 
 namespace Cine.DAL
 {
@@ -19,7 +20,7 @@ namespace Cine.DAL
 
             await PopulateGenderAsync();
             await PopulateClassificationAsync();
-            await PopulateRoomsAsync();
+            await PopulateRoomSeatAsync();
             await PopulateMoviesAsync();
 
             await _context.SaveChangesAsync();
@@ -55,7 +56,7 @@ namespace Cine.DAL
 
         }
 
-        private async Task PopulateRoomsAsync()
+       /*private async Task PopulateRoomsAsync()
         {
             if (!_context.Rooms.Any())
             {
@@ -69,17 +70,233 @@ namespace Cine.DAL
             }
 
         }
-        
+        */
         private async Task PopulateMoviesAsync()
         {
             if (!_context.Movies.Any())
             {
-                _context.Movies.Add(new Movie { Title="El Padrino", Description = "Una película de mafia dirigida por Francis Ford Coppola.", Director= "Francis Ford Coppola", Duration=175, GenderId=1, ClassificationId=2, CreatedDate = DateTime.Now });
-                _context.Movies.Add(new Movie { Title = "Cadena Perpetua", Description = "Una película carcelaria basada en una novela de Stephen King.", Director = "Frank Darabont", Duration = 142, GenderId = 3, ClassificationId = 2, CreatedDate = DateTime.Now });
+                _context.Movies.Add(new Movie { Title="El Padrino",
+                                                Description = "Una película de mafia dirigida por Francis Ford Coppola.",
+                                                Director= "Francis Ford Coppola", 
+                                                Duration=175,
+                                                GenderId=1,
+                                                ClassificationId=2,
+                                                CreatedDate = DateTime.Now 
+                                              }
+                                    );
+                _context.Movies.Add(new Movie { Title = "Cadena Perpetua",
+                                                Description = "Una película carcelaria basada en una novela de Stephen King.",
+                                                Director = "Frank Darabont",
+                                                Duration = 142,
+                                                GenderId = 3,
+                                                ClassificationId = 3,
+                                                CreatedDate = DateTime.Now
+                                              }
+                                   );
 
             }
 
         }
-        
+
+
+        private async Task PopulateRoomSeatAsync()
+        {
+            if (!_context.Rooms.Any())
+            {
+                _context.Rooms.Add(
+                    new Room
+                    {
+                        NumberRoom = "UNO",
+                        Capacity = 30,
+                        CreatedDate = DateTime.Now,
+                        Seats = new List<Seat>()
+                        {
+                            new Seat
+                            {
+                                NumberSeat = "UNO-A1",
+                                Busy = false,
+                                CreatedDate = DateTime.Now,                       
+                            },
+
+                            new Seat
+                            {
+                                NumberSeat = "UNO-A2",
+                                Busy = false,
+                                CreatedDate = DateTime.Now,
+                        
+                            },
+
+                            new Seat
+                            {
+                                NumberSeat = "UNO-A3",
+                                Busy = false,
+                                CreatedDate = DateTime.Now,
+                        
+                            },
+                            new Seat
+                            {
+                                NumberSeat = "UNO-A4",
+                                Busy = false,
+                                CreatedDate = DateTime.Now,
+
+                            },
+                            new Seat
+                            {
+                                NumberSeat = "UNO-A5",
+                                Busy = false,
+                                CreatedDate = DateTime.Now,
+
+                            },
+                            new Seat
+                            {
+                                NumberSeat = "UNO-A6",
+                                Busy = false,
+                                CreatedDate = DateTime.Now,
+
+                            },
+                            new Seat
+                            {
+                                NumberSeat = "UNO-B1",
+                                Busy = true,
+                                CreatedDate = DateTime.Now,
+                            },
+
+                            new Seat
+                            {
+                                NumberSeat = "UNO-B2",
+                                Busy = false,
+                                CreatedDate = DateTime.Now,
+
+                            },
+
+                            new Seat
+                            {
+                                NumberSeat = "UNO-B3",
+                                Busy = false,
+                                CreatedDate = DateTime.Now,
+
+                            },
+                            new Seat
+                            {
+                                NumberSeat = "UNO-B4",
+                                Busy = false,
+                                CreatedDate = DateTime.Now,
+
+                            },
+                            new Seat
+                            {
+                                NumberSeat = "UNO-B5",
+                                Busy = false,
+                                CreatedDate = DateTime.Now,
+
+                            },
+                            new Seat
+                            {
+                                NumberSeat = "UNO-B6",
+                                Busy = false,
+                                CreatedDate = DateTime.Now,
+
+                            },
+                        }
+                    });
+                _context.Rooms.Add(
+               new Room
+               {
+                   NumberRoom = "DOS",
+                   Capacity = 20,
+                   CreatedDate = DateTime.Now,
+                   Seats = new List<Seat>()
+                        {
+                            new Seat
+                            {
+                                NumberSeat = "DOS-A1",
+                                Busy = false,
+                                CreatedDate = DateTime.Now,
+                            },
+
+                            new Seat
+                            {
+                                NumberSeat = "DOS-A2",
+                                Busy = false,
+                                CreatedDate = DateTime.Now,
+
+                            },
+
+                            new Seat
+                            {
+                                NumberSeat = "DOS-A3",
+                                Busy = false,
+                                CreatedDate = DateTime.Now,
+
+                            },
+                            new Seat
+                            {
+                                NumberSeat = "DOS-A4",
+                                Busy = false,
+                                CreatedDate = DateTime.Now,
+
+                            },
+                            new Seat
+                            {
+                                NumberSeat = "DOS-A5",
+                                Busy = false,
+                                CreatedDate = DateTime.Now,
+
+                            },
+                            new Seat
+                            {
+                                NumberSeat = "DOS-A6",
+                                Busy = false,
+                                CreatedDate = DateTime.Now,
+
+                            },
+                            new Seat
+                            {
+                            NumberSeat = "DOS-B1",
+                            Busy = false,
+                            CreatedDate = DateTime.Now,
+                            },
+
+                            new Seat
+                            {
+                            NumberSeat = "DOS-B2",
+                            Busy = false,
+                            CreatedDate = DateTime.Now,
+
+                            },
+
+                            new Seat
+                            {
+                                NumberSeat = "DOS-B3",
+                                Busy = false,
+                                CreatedDate = DateTime.Now,
+
+                            },
+                            new Seat
+                            {
+                                NumberSeat = "DOS-B4",
+                                Busy = false,
+                                CreatedDate = DateTime.Now,
+
+                            },
+                            new Seat
+                            {
+                                NumberSeat = "DOS-B5",
+                                Busy = false,
+                                CreatedDate = DateTime.Now,
+
+                            },
+                            new Seat
+                            {
+                                NumberSeat = "DOS-B6",
+                                Busy = false,
+                                CreatedDate = DateTime.Now,
+
+                            },
+                        }
+               });
+            }
+        }
+
     }
 }

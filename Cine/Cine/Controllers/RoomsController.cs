@@ -237,6 +237,7 @@ namespace Cine.Controllers
 
                         Room = await _context.Rooms.FirstOrDefaultAsync(c => c.Id == seatViewModel.RoomId),
                         NumberSeat = seatViewModel.NumberSeat,
+                        Busy = false,
                         CreatedDate = DateTime.Now,
                         ModifiedDate = null,
                     };
