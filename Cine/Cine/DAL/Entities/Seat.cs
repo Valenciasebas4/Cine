@@ -7,7 +7,7 @@ namespace Cine.DAL.Entities
     {
         [Display(Name = "Número de Asiento")]
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
-        public int NumberSeat { get; set; }
+        public string NumberSeat { get; set; }
 
         [ForeignKey("Sala")]
         public int SalaID { get; set; }
