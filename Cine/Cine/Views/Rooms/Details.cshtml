@@ -19,26 +19,37 @@
             <a asp-action="Index" class="btn btn-outline-success">Regresar</a>
         </div>
         <hr />
-        <div class="row">
+
+         
 
             <div class="row">
                 <div class="col-12">
                     <div class="row row-cols-6 g-3">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-body text-center">
+                                    <h5 class="card-title ">PANTALLA</h5>
+                                </div>
+                            </div>
+                        </div>
+
                         @foreach (var item in Model.Seats)
                         {
                             <div class="col">
                                 <div class="card @(item.Busy ? "silla-ocupada" : "silla-disponible")">
                                     <div class="card-body text-center">
-                                        <h5 class="card-title">@Html.DisplayFor(modelItem => item.NumberSeat)</h5>
+                                    <h5 class="card-title ">@Html.DisplayFor(modelItem => item.NumberSeat)</h5>
                                     </div>
                                 </div>
                             </div>
+                       
                         }
+
                     </div>
                 </div>
             </div>
-            
-        </div>
+
+        
     </main>
 </div>
 
