@@ -1,0 +1,53 @@
+﻿@model Cine.Models.AddHourViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1 class="text-center">Crear Horario</h1>
+<hr />
+
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Movies" />
+
+
+            <div class="form-group">
+                <label asp-for="StarTime" class="control-label"></label>
+                <input asp-for="StarTime" class="form-control" />
+                <span asp-validation-for="StarTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EndignTime" class="control-label"></label>
+                <input asp-for="EndignTime" class="form-control" />
+                <span asp-validation-for="EndignTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Date" class="control-label"></label>
+                <input asp-for="Date" class="form-control" />
+                <span asp-validation-for="Date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MovieId" class="control-label"></label>
+                <select asp-for="MovieId" asp-items="Model.Movies" class="form-control"></select>
+                <span asp-validation-for="MovieId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mt-2">
+                <input type="submit" value="Crear" class="btn btn-outline-primary" />
+
+                <a asp-area="" asp-controller="Hours" asp-action="Index" class=" btn btn-outline-success">Regresar</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
