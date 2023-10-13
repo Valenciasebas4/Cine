@@ -1,4 +1,5 @@
-﻿using Cine.DAL.Entities;
+﻿using Cine.Controllers;
+using Cine.DAL.Entities;
 using System.Diagnostics.Metrics;
 
 namespace Cine.DAL
@@ -20,9 +21,9 @@ namespace Cine.DAL
 
             await PopulateGenderAsync();
             await PopulateClassificationAsync();
-            await PopulateRoomSeatAsync();
             await PopulateMoviesAsync();
-
+            await PopulateRoomSeatAsync();       
+            //await PopulateHoursAsync();
             await _context.SaveChangesAsync();
         }
 
@@ -56,21 +57,8 @@ namespace Cine.DAL
 
         }
 
-       /*private async Task PopulateRoomsAsync()
-        {
-            if (!_context.Rooms.Any())
-            {
-                _context.Rooms.Add(new Room { NumberRoom = "Uno", Capacity = 50, CreatedDate = DateTime.Now });
-                _context.Rooms.Add(new Room { NumberRoom = "Dos", Capacity = 100, CreatedDate = DateTime.Now });
-                _context.Rooms.Add(new Room { NumberRoom = "Tres", Capacity = 40, CreatedDate = DateTime.Now });
-                _context.Rooms.Add(new Room { NumberRoom = "Cuatro", Capacity = 120, CreatedDate = DateTime.Now });
-                _context.Rooms.Add(new Room { NumberRoom = "Cinco", Capacity = 60, CreatedDate = DateTime.Now });
-                _context.Rooms.Add(new Room { NumberRoom = "Seis", Capacity = 80, CreatedDate = DateTime.Now });
-
-            }
-
-        }
-        */
+        
+         
         private async Task PopulateMoviesAsync()
         {
             if (!_context.Movies.Any())
@@ -98,6 +86,7 @@ namespace Cine.DAL
 
         }
 
+        
 
         private async Task PopulateRoomSeatAsync()
         {
@@ -111,18 +100,13 @@ namespace Cine.DAL
                         CreatedDate = DateTime.Now,
                         Seats = new List<Seat>()
                         {
-                            new Seat
-                            {
-                                NumberSeat = "UNO-A1",
-                                Busy = false,
-                                CreatedDate = DateTime.Now,                       
-                            },
+                           new Seat{NumberSeat = "UNO-A1",Busy = false,CreatedDate = DateTime.Now},
 
                             new Seat
                             {
                                 NumberSeat = "UNO-A2",
                                 Busy = false,
-                                CreatedDate = DateTime.Now,
+                                CreatedDate = DateTime.Now
                         
                             },
 
@@ -130,42 +114,42 @@ namespace Cine.DAL
                             {
                                 NumberSeat = "UNO-A3",
                                 Busy = false,
-                                CreatedDate = DateTime.Now,
+                                CreatedDate = DateTime.Now
                         
                             },
                             new Seat
                             {
                                 NumberSeat = "UNO-A4",
                                 Busy = false,
-                                CreatedDate = DateTime.Now,
+                                CreatedDate = DateTime.Now
 
                             },
                             new Seat
                             {
                                 NumberSeat = "UNO-A5",
                                 Busy = false,
-                                CreatedDate = DateTime.Now,
+                                CreatedDate = DateTime.Now
 
                             },
                             new Seat
                             {
                                 NumberSeat = "UNO-A6",
                                 Busy = false,
-                                CreatedDate = DateTime.Now,
+                                CreatedDate = DateTime.Now
 
                             },
                             new Seat
                             {
                                 NumberSeat = "UNO-B1",
                                 Busy = true,
-                                CreatedDate = DateTime.Now,
+                                CreatedDate = DateTime.Now
                             },
 
                             new Seat
                             {
                                 NumberSeat = "UNO-B2",
                                 Busy = false,
-                                CreatedDate = DateTime.Now,
+                                CreatedDate = DateTime.Now
 
                             },
 
@@ -173,28 +157,28 @@ namespace Cine.DAL
                             {
                                 NumberSeat = "UNO-B3",
                                 Busy = false,
-                                CreatedDate = DateTime.Now,
+                                CreatedDate = DateTime.Now
 
                             },
                             new Seat
                             {
                                 NumberSeat = "UNO-B4",
                                 Busy = false,
-                                CreatedDate = DateTime.Now,
+                                CreatedDate = DateTime.Now
 
                             },
                             new Seat
                             {
                                 NumberSeat = "UNO-B5",
                                 Busy = false,
-                                CreatedDate = DateTime.Now,
+                                CreatedDate = DateTime.Now
 
                             },
                             new Seat
                             {
                                 NumberSeat = "UNO-B6",
                                 Busy = false,
-                                CreatedDate = DateTime.Now,
+                                CreatedDate = DateTime.Now
 
                             },
                         }
@@ -211,14 +195,14 @@ namespace Cine.DAL
                             {
                                 NumberSeat = "DOS-A1",
                                 Busy = false,
-                                CreatedDate = DateTime.Now,
+                                CreatedDate = DateTime.Now
                             },
 
                             new Seat
                             {
                                 NumberSeat = "DOS-A2",
                                 Busy = false,
-                                CreatedDate = DateTime.Now,
+                                CreatedDate = DateTime.Now
 
                             },
 
@@ -226,42 +210,42 @@ namespace Cine.DAL
                             {
                                 NumberSeat = "DOS-A3",
                                 Busy = false,
-                                CreatedDate = DateTime.Now,
+                                CreatedDate = DateTime.Now
 
                             },
                             new Seat
                             {
                                 NumberSeat = "DOS-A4",
                                 Busy = false,
-                                CreatedDate = DateTime.Now,
+                                CreatedDate = DateTime.Now
 
                             },
                             new Seat
                             {
                                 NumberSeat = "DOS-A5",
                                 Busy = false,
-                                CreatedDate = DateTime.Now,
+                                CreatedDate = DateTime.Now
 
                             },
                             new Seat
                             {
                                 NumberSeat = "DOS-A6",
                                 Busy = false,
-                                CreatedDate = DateTime.Now,
+                                CreatedDate = DateTime.Now
 
                             },
                             new Seat
                             {
                             NumberSeat = "DOS-B1",
                             Busy = false,
-                            CreatedDate = DateTime.Now,
+                            CreatedDate = DateTime.Now
                             },
 
                             new Seat
                             {
                             NumberSeat = "DOS-B2",
                             Busy = false,
-                            CreatedDate = DateTime.Now,
+                            CreatedDate = DateTime.Now
 
                             },
 
@@ -269,33 +253,46 @@ namespace Cine.DAL
                             {
                                 NumberSeat = "DOS-B3",
                                 Busy = false,
-                                CreatedDate = DateTime.Now,
+                                CreatedDate = DateTime.Now
 
                             },
                             new Seat
                             {
                                 NumberSeat = "DOS-B4",
                                 Busy = false,
-                                CreatedDate = DateTime.Now,
+                                CreatedDate = DateTime.Now
 
                             },
                             new Seat
                             {
                                 NumberSeat = "DOS-B5",
                                 Busy = false,
-                                CreatedDate = DateTime.Now,
+                                CreatedDate = DateTime.Now
 
                             },
                             new Seat
                             {
                                 NumberSeat = "DOS-B6",
                                 Busy = false,
-                                CreatedDate = DateTime.Now,
+                                CreatedDate = DateTime.Now
 
                             },
                         }
                });
             }
+        }
+
+        private async Task PopulateHoursAsync()
+        {
+            if (!_context.Hours.Any())
+            {
+                _context.Hours.Add(new Hour { StarTime = DateTime.Now, EndignTime = DateTime.Now, Date = DateTime.Today, MovieId = 1, CreatedDate = DateTime.Now });
+                //_context.Hours.Add(new Hour { StarTime = DateTime.Now, EndignTime = DateTime.Now, Date = DateTime.Today, MovieId = 2, CreatedDate = DateTime.Now });
+
+
+
+            }
+
         }
 
     }

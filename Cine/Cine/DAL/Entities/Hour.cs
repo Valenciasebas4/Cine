@@ -19,6 +19,9 @@ namespace Cine.DAL.Entities
         [DataType(DataType.Date)]
         public DateTime Date { get; set; }
 
+        [Display(Name = "Pelicula")]
+        [Required(ErrorMessage = "El campo {0} es obligatorio.")]
+        public int MovieId { get; set; }
         public Movie Movie { get; set; } // Relacion con Movie (pelicula)
 
     }
