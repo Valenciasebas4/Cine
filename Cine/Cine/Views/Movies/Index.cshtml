@@ -13,6 +13,35 @@
 </p>
 
 <div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Título: @Html.DisplayFor(modelItem => item.Title)</h5>
+                    <p class="card-text">Descripción: @Html.DisplayFor(modelItem => item.Description)</p>
+                    <p class="card-text">Director: @Html.DisplayFor(modelItem => item.Director)</p>
+                    <p class="card-text">Duración: @Html.DisplayFor(modelItem => item.Duration)</p>
+                    <p class="card-text">Seleccione un horario:</p>
+                    <div class="btn-group">
+                        @foreach (var hour in item.Hours)
+                        {
+                            <button type="button" class="btn btn-primary" onclick="selectHour(@hour.Id)">@hour.StarTime.ToString("hh:mm tt")</button>
+                        }
+                    </div>
+                    <br/>
+                    <div class="btn-group">
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-outline-warning">Editar</a>
+                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-outline-info">Detalles</a>
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-outline-danger">Eliminar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+@* 
+<div class="row">
 
     @if (Model.Count() > 0)
     {
@@ -75,7 +104,7 @@
 
    
 </div>
-
+*@
 
 @* 
 <table class="table">
