@@ -9,11 +9,11 @@ namespace Cine.DAL.Entities
         [DataType(DataType.Time)]
         public DateTime StarTime { get; set; }
 
-        [Display(Name = "Hora de Finalización")]
+       /* [Display(Name = "Hora de Finalización")]
         [Required]
         [DataType(DataType.Time)]
         public DateTime EndignTime { get; set; }
-
+       */
         [Display(Name = "Fecha")]
         [Required]
         [DataType(DataType.Date)]
@@ -22,6 +22,7 @@ namespace Cine.DAL.Entities
         [Display(Name = "Pelicula")]
         [Required(ErrorMessage = "El campo {0} es obligatorio.")]
         public int MovieId { get; set; }
+
         public Movie Movie { get; set; } // Relacion con Movie (pelicula)
 
     }

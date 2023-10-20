@@ -49,7 +49,7 @@ namespace Cine.Controllers
                     Hour hour = new()
                     {
                         StarTime = addHourViewModel.StarTime,
-                        EndignTime = addHourViewModel.EndignTime,
+                       
                         Date = addHourViewModel.Date,                      
                         CreatedDate = DateTime.Now,
                         Movie = await _context.Movies.FindAsync(addHourViewModel.MovieId),

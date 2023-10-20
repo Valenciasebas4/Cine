@@ -21,9 +21,9 @@ namespace Cine.DAL
 
             await PopulateGenderAsync();
             await PopulateClassificationAsync();
-            await PopulateMoviesAsync();
-            await PopulateRoomSeatAsync();       
-            //await PopulateHoursAsync();
+            await PopulateMoviesAsync();  // Primero, agrega las películas
+            await PopulateRoomSeatAsync();
+            //await PopulateHoursAsync();    // Luego, puedes agregar los horarios
             await _context.SaveChangesAsync();
         }
 
@@ -86,7 +86,20 @@ namespace Cine.DAL
 
         }
 
-        
+
+        private async Task PopulateHoursAsync()
+        {
+            if (!_context.Hours.Any())
+            {
+                _context.Hours.Add(new Hour { StarTime = DateTime.Now, Date = DateTime.Today, MovieId = 1, CreatedDate = DateTime.Now });
+                //_context.Hours.Add(new Hour { StarTime = DateTime.Now, Date = DateTime.Today, MovieId = 2, CreatedDate = DateTime.Now });
+
+
+
+            }
+
+        }
+
 
         private async Task PopulateRoomSeatAsync()
         {
@@ -282,18 +295,7 @@ namespace Cine.DAL
             }
         }
 
-        private async Task PopulateHoursAsync()
-        {
-            if (!_context.Hours.Any())
-            {
-                _context.Hours.Add(new Hour { StarTime = DateTime.Now, EndignTime = DateTime.Now, Date = DateTime.Today, MovieId = 1, CreatedDate = DateTime.Now });
-                //_context.Hours.Add(new Hour { StarTime = DateTime.Now, EndignTime = DateTime.Now, Date = DateTime.Today, MovieId = 2, CreatedDate = DateTime.Now });
-
-
-
-            }
-
-        }
+       
 
     }
 }

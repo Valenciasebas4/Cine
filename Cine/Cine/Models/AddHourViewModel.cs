@@ -13,11 +13,12 @@ namespace Cine.Models
         [DataType(DataType.Time)]
         public DateTime StarTime { get; set; }
 
+        /*
         [Display(Name = "Hora de Finalización")]
         [Required]
         [DataType(DataType.Time)]
         public DateTime EndignTime { get; set; }
-
+        */
         [Display(Name = "Fecha")]
         [Required]
         [DataType(DataType.Date)]

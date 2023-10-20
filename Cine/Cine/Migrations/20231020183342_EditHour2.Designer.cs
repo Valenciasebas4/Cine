@@ -4,6 +4,7 @@ using Cine.DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Cine.Migrations
 {
     [DbContext(typeof(DataBaseContext))]
-    partial class DataBaseContextModelSnapshot : ModelSnapshot
+    [Migration("20231020183342_EditHour2")]
+    partial class EditHour2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -53,7 +55,7 @@ namespace Cine.Migrations
 
                     b.HasIndex("SeatId");
 
-                    b.ToTable("Bookings", (string)null);
+                    b.ToTable("Bookings");
                 });
 
             modelBuilder.Entity("Cine.DAL.Entities.Classification", b =>
@@ -85,7 +87,7 @@ namespace Cine.Migrations
                     b.HasIndex("ClassificationName")
                         .IsUnique();
 
-                    b.ToTable("Classifications", (string)null);
+                    b.ToTable("Classifications");
                 });
 
             modelBuilder.Entity("Cine.DAL.Entities.Gender", b =>
@@ -117,7 +119,7 @@ namespace Cine.Migrations
                     b.HasIndex("GenderName")
                         .IsUnique();
 
-                    b.ToTable("Genders", (string)null);
+                    b.ToTable("Genders");
                 });
 
             modelBuilder.Entity("Cine.DAL.Entities.Hour", b =>
@@ -148,7 +150,7 @@ namespace Cine.Migrations
                     b.HasIndex("MovieId", "StarTime", "Date")
                         .IsUnique();
 
-                    b.ToTable("Hours", (string)null);
+                    b.ToTable("Hours");
                 });
 
             modelBuilder.Entity("Cine.DAL.Entities.Movie", b =>
@@ -198,7 +200,7 @@ namespace Cine.Migrations
                     b.HasIndex("Title")
                         .IsUnique();
 
-                    b.ToTable("Movies", (string)null);
+                    b.ToTable("Movies");
                 });
 
             modelBuilder.Entity("Cine.DAL.Entities.Room", b =>
@@ -228,7 +230,7 @@ namespace Cine.Migrations
                     b.HasIndex("NumberRoom")
                         .IsUnique();
 
-                    b.ToTable("Rooms", (string)null);
+                    b.ToTable("Rooms");
                 });
 
             modelBuilder.Entity("Cine.DAL.Entities.Seat", b =>
@@ -263,7 +265,7 @@ namespace Cine.Migrations
                         .IsUnique()
                         .HasFilter("[RoomId] IS NOT NULL");
 
-                    b.ToTable("Seats", (string)null);
+                    b.ToTable("Seats");
                 });
 
             modelBuilder.Entity("Cine.DAL.Entities.Booking", b =>

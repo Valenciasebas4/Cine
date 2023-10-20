@@ -41,6 +41,7 @@ namespace Cine.DAL.Entities
         public Gender Gender { get; set; }
         public Classification Classification { get; set; }
 
-        public List<Hour> Hours { get; set; } // Relacion con Horario
+        public ICollection<Hour> Hours { get; set; } // Propiedad de navegación
+        //public List<Hour> Hours { get; set; } // Relacion con Horario
     }
 }

@@ -24,7 +24,9 @@ namespace Cine.Controllers
         
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Movies.ToListAsync());
+            return View(await _context.Movies
+                .Include(m => m.Hours)// Incluye los horarios relacionados
+                .ToListAsync());
         }
 
         public async Task<IActionResult> Create()
