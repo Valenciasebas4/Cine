@@ -113,11 +113,11 @@ namespace Cine.DAL
                         CreatedDate = DateTime.Now,
                         Seats = new List<Seat>()
                         {
-                           new Seat{NumberSeat = "UNO-A1",Busy = false,CreatedDate = DateTime.Now},
+                           new Seat{NumberSeat = "A1",Busy = false,CreatedDate = DateTime.Now},
 
                             new Seat
                             {
-                                NumberSeat = "UNO-A2",
+                                NumberSeat = "A2",
                                 Busy = false,
                                 CreatedDate = DateTime.Now
                         
@@ -125,42 +125,42 @@ namespace Cine.DAL
 
                             new Seat
                             {
-                                NumberSeat = "UNO-A3",
+                                NumberSeat = "A3",
                                 Busy = false,
                                 CreatedDate = DateTime.Now
                         
                             },
                             new Seat
                             {
-                                NumberSeat = "UNO-A4",
+                                NumberSeat = "A4",
                                 Busy = false,
                                 CreatedDate = DateTime.Now
 
                             },
                             new Seat
                             {
-                                NumberSeat = "UNO-A5",
+                                NumberSeat = "A5",
                                 Busy = false,
                                 CreatedDate = DateTime.Now
 
                             },
                             new Seat
                             {
-                                NumberSeat = "UNO-A6",
+                                NumberSeat = "A6",
                                 Busy = false,
                                 CreatedDate = DateTime.Now
 
                             },
                             new Seat
                             {
-                                NumberSeat = "UNO-B1",
+                                NumberSeat = "B1",
                                 Busy = true,
                                 CreatedDate = DateTime.Now
                             },
 
                             new Seat
                             {
-                                NumberSeat = "UNO-B2",
+                                NumberSeat = "B2",
                                 Busy = false,
                                 CreatedDate = DateTime.Now
 
@@ -168,28 +168,28 @@ namespace Cine.DAL
 
                             new Seat
                             {
-                                NumberSeat = "UNO-B3",
+                                NumberSeat = "B3",
                                 Busy = false,
                                 CreatedDate = DateTime.Now
 
                             },
                             new Seat
                             {
-                                NumberSeat = "UNO-B4",
+                                NumberSeat = "B4",
                                 Busy = false,
                                 CreatedDate = DateTime.Now
 
                             },
                             new Seat
                             {
-                                NumberSeat = "UNO-B5",
+                                NumberSeat = "B5",
                                 Busy = false,
                                 CreatedDate = DateTime.Now
 
                             },
                             new Seat
                             {
-                                NumberSeat = "UNO-B6",
+                                NumberSeat = "B6",
                                 Busy = false,
                                 CreatedDate = DateTime.Now
 
@@ -206,14 +206,14 @@ namespace Cine.DAL
                         {
                             new Seat
                             {
-                                NumberSeat = "DOS-A1",
+                                NumberSeat = "A1",
                                 Busy = false,
                                 CreatedDate = DateTime.Now
                             },
 
                             new Seat
                             {
-                                NumberSeat = "DOS-A2",
+                                NumberSeat = "A2",
                                 Busy = false,
                                 CreatedDate = DateTime.Now
 
@@ -221,42 +221,42 @@ namespace Cine.DAL
 
                             new Seat
                             {
-                                NumberSeat = "DOS-A3",
+                                NumberSeat = "A3",
                                 Busy = false,
                                 CreatedDate = DateTime.Now
 
                             },
                             new Seat
                             {
-                                NumberSeat = "DOS-A4",
+                                NumberSeat = "A4",
                                 Busy = false,
                                 CreatedDate = DateTime.Now
 
                             },
                             new Seat
                             {
-                                NumberSeat = "DOS-A5",
+                                NumberSeat = "A5",
                                 Busy = false,
                                 CreatedDate = DateTime.Now
 
                             },
                             new Seat
                             {
-                                NumberSeat = "DOS-A6",
+                                NumberSeat = "A6",
                                 Busy = false,
                                 CreatedDate = DateTime.Now
 
                             },
                             new Seat
                             {
-                            NumberSeat = "DOS-B1",
+                            NumberSeat = "B1",
                             Busy = false,
                             CreatedDate = DateTime.Now
                             },
 
                             new Seat
                             {
-                            NumberSeat = "DOS-B2",
+                            NumberSeat = "B2",
                             Busy = false,
                             CreatedDate = DateTime.Now
 
@@ -264,28 +264,28 @@ namespace Cine.DAL
 
                             new Seat
                             {
-                                NumberSeat = "DOS-B3",
+                                NumberSeat = "B3",
                                 Busy = false,
                                 CreatedDate = DateTime.Now
 
                             },
                             new Seat
                             {
-                                NumberSeat = "DOS-B4",
+                                NumberSeat = "B4",
                                 Busy = false,
                                 CreatedDate = DateTime.Now
 
                             },
                             new Seat
                             {
-                                NumberSeat = "DOS-B5",
+                                NumberSeat = "B5",
                                 Busy = false,
                                 CreatedDate = DateTime.Now
 
                             },
                             new Seat
                             {
-                                NumberSeat = "DOS-B6",
+                                NumberSeat = "B6",
                                 Busy = false,
                                 CreatedDate = DateTime.Now
 
