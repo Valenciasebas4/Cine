@@ -10,5 +10,10 @@ namespace Cine.Helpers
         Task<IEnumerable<SelectListItem>> GetDDLGendersAsync(); //Lista de Generos
         Task<IEnumerable<SelectListItem>> GetDDLMoviesAsync(); //Lista de Peliculas
 
+        Task<IEnumerable<SelectListItem>> GetDDLCountriesAsync();
+
+        Task<IEnumerable<SelectListItem>> GetDDLStatesAsync(int countryId);
+
+        Task<IEnumerable<SelectListItem>> GetDDLCitiesAsync(int stateId);
     }
 }

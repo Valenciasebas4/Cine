@@ -1,9 +1,10 @@
 ﻿using Cine.DAL.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace Cine.DAL
 {
-    public class DataBaseContext : DbContext
+    public class DataBaseContext : IdentityDbContext<User>
     {
         // Constructor
         public DataBaseContext(DbContextOptions<DataBaseContext> options) : base(options)

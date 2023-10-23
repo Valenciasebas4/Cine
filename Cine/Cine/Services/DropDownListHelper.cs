@@ -121,5 +121,71 @@ namespace Cine.Services
 
             return listMovies;
         }
+
+        public async Task<IEnumerable<SelectListItem>> GetDDLCountriesAsync()
+        {
+            List<SelectListItem> listCountries = await _context.Countries
+                .Select(c => new SelectListItem
+                {
+                    Text = c.Name,
+                    Value = c.Id.ToString(),
+                })
+                .OrderBy(c => c.Text)
+                .ToListAsync();
+
+            listCountries.Insert(0, new SelectListItem
+            {
+                Text = "Seleccione un país...",
+                Value = Guid.Empty.ToString(),
+                Selected = true
+            });
+
+            return listCountries;
+        }
+
+
+        public async Task<IEnumerable<SelectListItem>> GetDDLStatesAsync(int countryId)
+        {
+            List<SelectListItem> listStates = await _context.States
+                .Where(s => s.Country.Id == countryId)
+                .Select(s => new SelectListItem
+                {
+                    Text = s.Name,
+                    Value = s.Id.ToString(),
+                })
+                .OrderBy(s => s.Text)
+                .ToListAsync();
+
+            listStates.Insert(0, new SelectListItem
+            {
+                Text = "Seleccione un estado...",
+                Value = Guid.Empty.ToString(),
+                Selected = true
+            });
+
+            return listStates;
+        }
+
+        public async Task<IEnumerable<SelectListItem>> GetDDLCitiesAsync(int stateId)
+        {
+            List<SelectListItem> listCities = await _context.Cities
+                .Where(c => c.State.Id == stateId)
+                .Select(c => new SelectListItem
+                {
+                    Text = c.Name,
+                    Value = c.Id.ToString(),
+                })
+                .OrderBy(c => c.Text)
+                .ToListAsync();
+
+            listCities.Insert(0, new SelectListItem
+            {
+                Text = "Seleccione una ciudad...",
+                Value = Guid.Empty.ToString(),
+                Selected = true
+            });
+
+            return listCities;
+        }
     }
 }

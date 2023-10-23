@@ -26,6 +26,9 @@ builder.Services.AddTransient<SeederDb>();
 //Builder para llamar la interfaz IDropDownListHelper.cs
 builder.Services.AddScoped<IDropDownListHelper, DropDownListHelper>();
 
+//Builder para llamar la interfaz IUserHelper.cs
+builder.Services.AddScoped<IUserHelper, UserHelper>();
+
 var app = builder.Build();
 
 app.UseRequestLocalization();
