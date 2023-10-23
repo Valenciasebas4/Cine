@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using Cine.DAL.Entities;
-
+using Proyecto_Final.Utilities;
 using System.ComponentModel.DataAnnotations;
 
 namespace Cine.Models
@@ -45,21 +45,21 @@ namespace Cine.Models
         public IFormFile ImageFile { get; set; }
         */
         [Display(Name = "País")]
-       //[NonEmptyGuid(ErrorMessage = "Debes de seleccionar un país.")]
+        [NonEmptyGuid(ErrorMessage = "Debes de seleccionar un país.")]
         [Required(ErrorMessage = "El campo {0} es obligatorio.")]
         public Guid CountryId { get; set; }
 
         public IEnumerable<SelectListItem> Countries { get; set; }
 
         [Display(Name = "Departamento/Estado")]
-        //[NonEmptyGuid(ErrorMessage = "Debes de seleccionar un estado.")]
+        [NonEmptyGuid(ErrorMessage = "Debes de seleccionar un estado.")]
         [Required(ErrorMessage = "El campo {0} es obligatorio.")]
         public Guid StateId { get; set; }
 
         public IEnumerable<SelectListItem> States { get; set; }
 
         [Display(Name = "Ciudad")]
-        //[NonEmptyGuid(ErrorMessage = "Debes de seleccionar una ciudad.")]
+        [NonEmptyGuid(ErrorMessage = "Debes de seleccionar una ciudad.")]
         public Guid CityId { get; set; }
 
         public IEnumerable<SelectListItem> Cities { get; set; }

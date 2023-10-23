@@ -28,7 +28,8 @@ namespace Cine.DAL
             await PopulateCountriesStatesCitiesAsync();
             //await PopulateHoursAsync();    // Luego, puedes agregar los horarios
             await PopulateUserAsync("Sebastian", "Londoño", "sebas@yopmail.com", "3142393101", "Barbosa", "1035234145", UserType.Admin);
-            await PopulateUserAsync("Jessica", "Gomez", "jess@yopmail.com", "3188955943", "Barbosa", "1035232261", UserType.User);
+            //await PopulateUserAsync("Jessica", "Gomez", "jess@yopmail.com", "3188955943", "Barbosa", "1035232261", UserType.Client);
+            //await PopulateUserAsync("Juan", "Londoño", "juan@yopmail.com", "3142393102", "Barbosa", "1035234146", UserType.Client);
             await _context.SaveChangesAsync();
         }
 
@@ -62,7 +63,7 @@ namespace Cine.DAL
 
         }
 
-        private async Task PopulateUserAsync(string firstName, string lastName, string email, string phone, string address, string document, /*string image,*/ UserType userType)
+        private async Task PopulateUserAsync(string firstName, string lastName, string email, string phone, string address, string document,UserType userType)
         {
             User user = await _userHelper.GetUserAsync(email);
             if (user == null)

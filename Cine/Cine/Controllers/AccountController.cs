@@ -77,7 +77,7 @@ namespace Cine.Controllers
                 Countries = await _ddlHelper.GetDDLCountriesAsync(),
                 States = await _ddlHelper.GetDDLStatesAsync(emptyGuid),
                 Cities = await _ddlHelper.GetDDLCitiesAsync(emptyGuid),
-                UserType = UserType.User, //Usuarios registrados por pantalla son User
+                UserType = UserType.Client, //Usuarios registrados por pantalla son User
             };
 
             return View(addUserViewModel);
