@@ -1,5 +1,7 @@
 ﻿using Cine.Controllers;
 using Cine.DAL.Entities;
+using Cine.Enum;
+using Cine.Helpers;
 using System.Diagnostics.Metrics;
 
 namespace Cine.DAL
@@ -7,11 +9,11 @@ namespace Cine.DAL
     public class SeederDb
     {
         private readonly DataBaseContext _context;
-
-        public SeederDb(DataBaseContext context)
+        private readonly IUserHelper _userHelper;
+        public SeederDb(DataBaseContext context, IUserHelper userHelper)
         {
             _context = context;
-            
+            _userHelper = userHelper;
 
         }
 
@@ -25,6 +27,8 @@ namespace Cine.DAL
             await PopulateRoomSeatAsync();
             await PopulateCountriesStatesCitiesAsync();
             //await PopulateHoursAsync();    // Luego, puedes agregar los horarios
+            await PopulateUserAsync("Sebastian", "Londoño", "sebas@yopmail.com", "3142393101", "Barbosa", "1035234145", UserType.Admin);
+            await PopulateUserAsync("Jessica", "Gomez", "jess@yopmail.com", "3188955943", "Barbosa", "1035232261", UserType.User);
             await _context.SaveChangesAsync();
         }
 
@@ -58,8 +62,34 @@ namespace Cine.DAL
 
         }
 
-        
-         
+        private async Task PopulateUserAsync(string firstName, string lastName, string email, string phone, string address, string document, /*string image,*/ UserType userType)
+        {
+            User user = await _userHelper.GetUserAsync(email);
+            if (user == null)
+            {
+                //Guid imageId = await _azureBlobHelper.UploadAzureBlobAsync($"{Environment.CurrentDirectory}\\wwwroot\\images\\users\\{image}", "users");
+
+                user = new User
+                {
+                    CreatedDate = DateTime.Now,
+                    FirstName = firstName,
+                    LastName = lastName,
+                    Email = email,
+                    UserName = email,
+                    PhoneNumber = phone,
+                    Address = address,
+                    Document = document,
+                    City = _context.Cities.FirstOrDefault(),
+                    UserType = userType,
+                    //ImageId = imageId
+                };
+
+                await _userHelper.AddUserAsync(user, "123456"); //se establece contraseña para el usuario
+                await _userHelper.AddUserToRoleAsync(user, userType.ToString());//agrega el usuario con el rol
+            }
+        }
+
+
         private async Task PopulateMoviesAsync()
         {
             if (!_context.Movies.Any())

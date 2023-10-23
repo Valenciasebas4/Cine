@@ -2,7 +2,7 @@
 
 namespace Cine.DAL.Entities
 {
-    public class City : Entity
+    public class City : EntityTwo
     {
         [Display(Name = "Ciudad")]
         [MaxLength(50)]

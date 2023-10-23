@@ -5,6 +5,6 @@ namespace Cine.Models
 {
     public class CityViewModel : City
     {
-        public int StateId { get; set; }
+        public Guid StateId { get; set; }
     }
 }

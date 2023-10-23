@@ -12,8 +12,8 @@ namespace Cine.Helpers
 
         Task<IEnumerable<SelectListItem>> GetDDLCountriesAsync();
 
-        Task<IEnumerable<SelectListItem>> GetDDLStatesAsync(int countryId);
+        Task<IEnumerable<SelectListItem>> GetDDLStatesAsync(Guid countryId);
 
-        Task<IEnumerable<SelectListItem>> GetDDLCitiesAsync(int stateId);
+        Task<IEnumerable<SelectListItem>> GetDDLCitiesAsync(Guid stateId);
     }
 }

@@ -144,7 +144,7 @@ namespace Cine.Services
         }
 
 
-        public async Task<IEnumerable<SelectListItem>> GetDDLStatesAsync(int countryId)
+        public async Task<IEnumerable<SelectListItem>> GetDDLStatesAsync(Guid countryId)
         {
             List<SelectListItem> listStates = await _context.States
                 .Where(s => s.Country.Id == countryId)
@@ -166,7 +166,7 @@ namespace Cine.Services
             return listStates;
         }
 
-        public async Task<IEnumerable<SelectListItem>> GetDDLCitiesAsync(int stateId)
+        public async Task<IEnumerable<SelectListItem>> GetDDLCitiesAsync(Guid stateId)
         {
             List<SelectListItem> listCities = await _context.Cities
                 .Where(c => c.State.Id == stateId)

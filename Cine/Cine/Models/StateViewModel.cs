@@ -4,6 +4,6 @@ namespace Cine.Models
 {
     public class StateViewModel : State
     {
-        public int CountryId { get; set; }
+        public Guid CountryId { get; set; }
     }
 }

@@ -3,7 +3,7 @@ using System.Xml.Linq;
 
 namespace Cine.DAL.Entities
 {
-    public class Country : Entity
+    public class Country : EntityTwo
     {
         /*DataAnnotations*/
         [Display(Name = "País")] 

@@ -16,7 +16,6 @@ namespace Cine.DAL
         public DbSet<Country> Countries { get; set; }
         public DbSet<State> States { get; set; }
         public DbSet<City> Cities { get; set; }
-
         public DbSet<Booking> Bookings { get; set; }
         public DbSet<Classification> Classifications { get; set; }
         public DbSet<Gender> Genders { get; set; }

@@ -2,7 +2,7 @@
 
 namespace Cine.DAL.Entities
 {
-    public class State : Entity
+    public class State : EntityTwo
     {
         [Display(Name = "Dpto/Estado")] 
         [MaxLength(50)]

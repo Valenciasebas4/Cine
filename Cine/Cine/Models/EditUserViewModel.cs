@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Cine.Models
 {
-    public class EditUserViewModel : Entity
+    public class EditUserViewModel : EntityTwo
     {
         [Display(Name = "Documento")]
         [MaxLength(20, ErrorMessage = "El campo {0} debe tener máximo {1} caracteres.")]
@@ -45,22 +45,22 @@ namespace Cine.Models
         public IFormFile ImageFile { get; set; }
         */
         [Display(Name = "País")]
-       // [NonEmptyGuid(ErrorMessage = "Debes de seleccionar un país.")]
+       //[NonEmptyGuid(ErrorMessage = "Debes de seleccionar un país.")]
         [Required(ErrorMessage = "El campo {0} es obligatorio.")]
-        public int CountryId { get; set; }
+        public Guid CountryId { get; set; }
 
         public IEnumerable<SelectListItem> Countries { get; set; }
 
         [Display(Name = "Departamento/Estado")]
-       // [NonEmptyGuid(ErrorMessage = "Debes de seleccionar un estado.")]
+        //[NonEmptyGuid(ErrorMessage = "Debes de seleccionar un estado.")]
         [Required(ErrorMessage = "El campo {0} es obligatorio.")]
-        public int StateId { get; set; }
+        public Guid StateId { get; set; }
 
         public IEnumerable<SelectListItem> States { get; set; }
 
         [Display(Name = "Ciudad")]
         //[NonEmptyGuid(ErrorMessage = "Debes de seleccionar una ciudad.")]
-        public int CityId { get; set; }
+        public Guid CityId { get; set; }
 
         public IEnumerable<SelectListItem> Cities { get; set; }
     }

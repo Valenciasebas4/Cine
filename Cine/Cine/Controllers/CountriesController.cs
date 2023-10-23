@@ -34,7 +34,7 @@ namespace Cine.Controllers
         }
 
         // GET: Countries/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(Guid? id)
         {
             if (id == null || _context.Countries == null)
             {
@@ -114,7 +114,7 @@ namespace Cine.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> Edit(int id, Country country)
+        public async Task<IActionResult> Edit(Guid id, Country country)
         {
             if (id != country.Id) return NotFound();
 
@@ -147,7 +147,7 @@ namespace Cine.Controllers
 
         // GET: Countries/Delete/5
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(Guid? id)
         {
             if (id == null || _context.Countries == null) return NotFound();
 
@@ -163,7 +163,7 @@ namespace Cine.Controllers
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
             if (_context.Countries == null)
                 return Problem("Entity set 'DataBaseContext.Countries' is null.");
@@ -180,7 +180,7 @@ namespace Cine.Controllers
         //////////////////////////////////
 
         [HttpGet]
-        public async Task<IActionResult> AddState(int? countryId)
+        public async Task<IActionResult> AddState(Guid? countryId)
         {
             if (countryId == null) return NotFound();
 
@@ -234,7 +234,7 @@ namespace Cine.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> EditState(int? stateId)
+        public async Task<IActionResult> EditState(Guid? stateId)
         {
             if (stateId == null || _context.States == null) return NotFound();
 
@@ -257,7 +257,7 @@ namespace Cine.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditState(int countryId, StateViewModel stateViewModel)
+        public async Task<IActionResult> EditState(Guid countryId, StateViewModel stateViewModel)
         {
             if (countryId != stateViewModel.CountryId) return NotFound();
 
@@ -293,7 +293,7 @@ namespace Cine.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> DetailsState(int? stateId)
+        public async Task<IActionResult> DetailsState(Guid? stateId)
         {
             if (stateId == null || _context.States == null) return NotFound();
 
@@ -307,7 +307,7 @@ namespace Cine.Controllers
             return View(state);
         }
 
-        public async Task<IActionResult> DeleteState(int? stateId)
+        public async Task<IActionResult> DeleteState(Guid? stateId)
         {
             if (stateId == null || _context.States == null) return NotFound();
 
@@ -323,7 +323,7 @@ namespace Cine.Controllers
 
         [HttpPost, ActionName("DeleteState")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteStateConfirmed(int stateId)
+        public async Task<IActionResult> DeleteStateConfirmed(Guid stateId)
         {
             if (_context.States == null) return Problem("Entity set 'DataBaseContext.States' is null.");
 
@@ -341,7 +341,7 @@ namespace Cine.Controllers
 #region Cities Actions
 
         [HttpGet]
-        public async Task<IActionResult> AddCity(int? stateId)
+        public async Task<IActionResult> AddCity(Guid? stateId)
         {
             if (stateId == null) return NotFound();
 
@@ -394,7 +394,7 @@ namespace Cine.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> EditCity(int? cityId)
+        public async Task<IActionResult> EditCity(Guid? cityId)
         {
             if (cityId == null || _context.Cities == null) return NotFound();
 
@@ -417,7 +417,7 @@ namespace Cine.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditCity(int stateId, CityViewModel cityViewModel)
+        public async Task<IActionResult> EditCity(Guid stateId, CityViewModel cityViewModel)
         {
             if (stateId != cityViewModel.StateId) return NotFound();
 
@@ -453,7 +453,7 @@ namespace Cine.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> DetailsCity(int? cityId)
+        public async Task<IActionResult> DetailsCity(Guid? cityId)
         {
             if (cityId == null || _context.Cities == null) return NotFound();
 
@@ -466,7 +466,7 @@ namespace Cine.Controllers
             return View(city);
         }
 
-        public async Task<IActionResult> DeleteCity(int? cityId)
+        public async Task<IActionResult> DeleteCity(Guid? cityId)
         {
             if (cityId == null || _context.Cities == null) return NotFound();
 
@@ -481,7 +481,7 @@ namespace Cine.Controllers
 
         [HttpPost, ActionName("DeleteCity")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteCityConfirmed(int cityId)
+        public async Task<IActionResult> DeleteCityConfirmed(Guid cityId)
         {
             if (_context.States == null) return Problem("Entity set 'DataBaseContext.Cities' is null.");
 
